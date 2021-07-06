@@ -1,1 +1,6 @@
-bootstrap-5.0.2-examples
+*.gem
+.bundle
+.sass-cache
+_site
+*.code-workspace
+vendor
