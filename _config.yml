@@ -51,7 +51,7 @@ linkedin_username: djrmarques
 # about_title: About Me (Use this to override about section title)
 about_profile_image: images/main.jpg
 about_content: | # this will include new lines to allow paragraphs
-Data Scientist mainly interested in financial markets and crypto. 
+  Data Scientist mainly interested in financial markets and crypto. 
 
 content:
   - title: Projects # Title for the section
