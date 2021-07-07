@@ -3,7 +3,13 @@
   margin: 0 20%;
 }
 
+p {
+  color: white;
+}
 
+#skills-cols {
+  margin: 5%;
+}
 
 /* Style all font awesome icons */
 .fa {

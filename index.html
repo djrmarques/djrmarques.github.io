@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="css/style.css" rel="stylesheet">
 
+    <!-- JS -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
     <title>David Marques</title>
   </head>
   <body>
@@ -23,7 +26,7 @@
         <div class="text-start" id='about' >
           <p>Hello! My name is David and I am a Data Scientist. I have 2+ years industry experience where I developed various Machine Learning/Analytics solutions for different clients and projects. Currently mainly interested in crypto and financial markets.</p>
 
-          <p>Feel free to get in contact if you fidn any of my projects interesting!</p>
+          <p>Get in contact!</p>
         </div>
 
         <div>
@@ -33,14 +36,22 @@
         </div>
     </div>
     <div class='text-secondary px-4 py-5 text-center'> 
-        <h1>Skills</h1> 
-        <p>Test</p>
-        <p>Test</p>
-        <p>Test</p>
-        <p>Test</p>
-        <p>Test</p>
-        <p>Test</p>
-        <p>Test</p>
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <h3>Programming</h3>
+              <div id='skills-programming' class='skills-cols'></div>
+            </div>
+            <div class="col">
+              <h3>Machine Learning</h3>
+              <div id='skills-ml' class='skills-cols'></div>
+            </div>
+            <div class="col">
+              <h3>Tools/Frameworks</h3>
+              <div id='skills-tools' class='skills-cols'></div>
+            </div>
+          </div>
+        </div>
     </div>
     <div class='bg-dark text-secondary px-4 py-5 text-center'>
         <h1>Projects</h1> 
@@ -52,5 +63,8 @@
         <p>Test</p>
         <p>Test</p>
     </div>
+
+    <!-- Call the scripts -->
+    <script type = "text/javascript" src="js/skills.js"></script>  
   </body>
 </html>
