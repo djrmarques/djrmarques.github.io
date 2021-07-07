@@ -8,56 +8,64 @@ const programmingSkills = [
     {Name: 'Scala', level: 2, desc: 'Some small engineering pipelines on Databricks.'},
 ]
 
-// Given a dictionary, creates a bar graph with the skills
+const mlSkills = [
+    {Name: 'Pytorch', level: 3, desc: 'Main Professional Language for Data Science/Engineering'},
+    {Name: 'Keras', level: 2, desc: 'Some simple web pages on professional and personal projects.'},
+    {Name: 'Sklearn', level: 4, desc: 'Some simple challenges on Project Euler.'},
+]
+
+const toolSkills = [
+    {Name: 'Docker', level: 3, desc: 'Main Professional Language for Data Science/Engineering'},
+    {Name: 'Sparks', level: 2, desc: 'Some simple web pages on professional and personal projects.'},
+    {Name: 'Databricks', level: 2, desc: 'Some simple web pages on professional and personal projects.'},
+]
+
+// // Given a dictionary, creates a bar graph with the skills
 function d3SkillGraph(skills_dict, target_id) {
 
     // Constant Variables
     const maxSkillLevel = 5
-    const barWidthMult = 0.1
-    const barLeftOffsetMult = 0.2
 
-        // Create the SVG
+    // Create the SVG
     var svg = d3.select(target_id)
         .append("svg")
         .attr("width", "100%")
         .attr("heigth", "100%")
+        .attr("padding", "5%")
 
-    svg_width = parseInt(svg.style("width"));
-    svg_height = parseInt(svg.style("height"));
+    const width = parseInt(svg.style("width"));
+    const height = parseInt(svg.style("height"));
 
-    const barWidth = svg_height*barWidthMult
-    const barLeftOffset = barLeftOffsetMult*svg_width
+    var simulation = d3.forceSimulation()
+        .nodes(skills_dict);	
 
-    // Create the scales
-    // Y axis
-    var y = d3.scaleBand()
-        .range([ 0, svg_height])
-        .domain(skills_dict.sort((a, b) => b.level - a.level).map(d => d.Name))
+    // Add Forces
+    simulation
+        .force("charge_force", d3.forceManyBody())
+        .force("center_force", d3.forceCenter(width / 2, height / 2));
 
-    var x = d3.scaleLinear()
-        .domain([0, maxSkillLevel])
-        .range([ 0,  svg_width]);
-
-    // Add scales to axis
-    var y_axis = d3.axisLeft()
-    .scale(y);
-
-    // Create the bars
-    svg.selectAll("bar")
+    //draw circles for the nodes 
+    var node = svg.append("g")
+        .attr("class", "nodes")
+        .selectAll("circle")
         .data(skills_dict)
         .enter()
-        .append("rect")
-        .style("fill", "steelblue")
-        .attr("x", barLeftOffset)
-        .attr("width", d => x(d.level))
-        .attr("y", d => y(d.Name) + barWidth/2)
-        .attr("height", barWidth);
+        .append("circle")
+        .attr("r", 5)
+        .attr("fill", "red");  
 
-    svg.append("g").attr("transform", "translate(" + barLeftOffset +", 0)").call(y_axis)
+    function tickActions() {
+        //update circle positions each tick of the simulation 
+        node
+            .attr("cx", d => Math.min(Math.max(d.x, 0), width))
+            .attr("cy", d => Math.min(Math.max(d.y, 0), height));
+    }           
 
+    //add tick instructions: 
+    simulation.on("tick", tickActions);
 }
 
 // Create the plots
 d3SkillGraph(programmingSkills, "#skills-programming")
-d3SkillGraph(programmingSkills, "#skills-ml")
-d3SkillGraph(programmingSkills, "#skills-tools")
+d3SkillGraph(mlSkills, "#skills-ml")
+d3SkillGraph(toolSkills, "#skills-tools")
