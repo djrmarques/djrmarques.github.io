@@ -24,7 +24,8 @@ const toolSkills = [
 function d3SkillGraph(skills_dict, target_id) {
 
     // Constant Variables
-    const maxSkillLevel = 5
+    const maxSkillLevel = 5;
+    const circleRadius = 20;
 
     // Create the SVG
     var svg = d3.select(target_id)
@@ -53,14 +54,29 @@ function d3SkillGraph(skills_dict, target_id) {
         .attr("xlink:href", d => d.icon)
         .attr("x", width/2)
         .attr("y", height/2)
-        .attr("width", 16);
+        .attr("width", 100);
+
+    var circles = svg.append("g")
+        .selectAll("icons")
+        .data(skills_dict)
+        .enter()
+        .append("circle")
+        .attr("cx", width/2)
+        .attr("fill", NaN)
+        .attr("cy", height/2)
+        .attr("r", circleRadius);
+
 
     // The tick function
     function tickActions() {
         //update circle positions each tick of the simulation 
         node
             .attr("x", d => Math.min(Math.max(d.x, 0), width))
-            .attr("y", d => Math.min(Math.max(d.y, 0), height));
+            .attr("y", d => Math.min(Math.max(d.y, 0), height*0.9));
+
+        circles
+            .attr("cx", d => Math.min(Math.max(d.x, 0), width))
+            .attr("cy", d => Math.min(Math.max(d.y, 0), height*0.9));
     }           
 
     //add tick instructions: 
