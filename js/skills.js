@@ -1,16 +1,17 @@
 
 
 const programmingSkills = [
-    {Name: 'Python', level: 4, desc: 'Main Professional Language'},
-    {Name: 'Javascript', level: 3, desc: 'Main Professional Language'},
-    {Name: 'C', level: 1, desc: 'Main Professional Language'},
-    {Name: 'R', level: 2, desc: 'Main Professional Language'},
-    {Name: 'Scala', level: 2, desc: 'Main Professional Language'},
+    {Name: 'Python', level: 4, desc: 'Main Professional Language for Data Science/Engineering'},
+    {Name: 'Javascript', level: 3, desc: 'Some simple web pages on professional and personal projects.'},
+    {Name: 'C', level: 1, desc: 'Some simple challenges on Project Euler.'},
+    {Name: 'R', level: 2, desc: 'Some analysis on personal projects.'},
+    {Name: 'Scala', level: 2, desc: 'Some small engineering pipelines on Databricks.'},
 ]
 
 // Given a dictionary, creates a bar graph with the skills
 function d3SkillGraph(skills_dict, target_id) {
 
+    // Constant Variables
     const maxSkillLevel = 5
     const barWidthMult = 0.1
     const barLeftOffsetMult = 0.2
@@ -31,7 +32,7 @@ function d3SkillGraph(skills_dict, target_id) {
     // Y axis
     var y = d3.scaleBand()
         .range([ 0, svg_height])
-        .domain(skills_dict.map(d => d.Name))
+        .domain(skills_dict.sort((a, b) => b.level - a.level).map(d => d.Name))
 
     var x = d3.scaleLinear()
         .domain([0, maxSkillLevel])
