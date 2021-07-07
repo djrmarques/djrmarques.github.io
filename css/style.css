@@ -1,3 +1,10 @@
+#about {
+  background: None;
+  margin: 0 20%;
+}
+
+
+
 /* Style all font awesome icons */
 .fa {
     padding: 20px;
@@ -11,11 +18,7 @@
   .fa:hover {
     opacity: 0.7;
   }
-  
-  /* Set a specific color for each brand */
-  
-  
-  /* Twitter */
+
   .fa {
     background: None;
     color: white;
