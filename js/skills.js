@@ -46,19 +46,22 @@ function d3SkillGraph(skills_dict, target_id) {
 
     //draw circles for the nodes 
     var node = svg.append("g")
-        .attr("class", "nodes")
-        .selectAll("circle")
+        .selectAll("icons")
         .data(skills_dict)
         .enter()
-        .append("circle")
-        .attr("r", 5)
-        .attr("fill", "red");  
+        .append("image")
+        .attr("xlink:href", "https://github.com/favicon.ico")
+        .attr("x", width/2)
+        .attr("y", height/2)
+        .attr("width", 16)
+        .attr("height", 16);
 
+    // The tick function
     function tickActions() {
         //update circle positions each tick of the simulation 
         node
-            .attr("cx", d => Math.min(Math.max(d.x, 0), width))
-            .attr("cy", d => Math.min(Math.max(d.y, 0), height));
+            .attr("x", d => Math.min(Math.max(d.x, 0), width))
+            .attr("y", d => Math.min(Math.max(d.y, 0), height));
     }           
 
     //add tick instructions: 
